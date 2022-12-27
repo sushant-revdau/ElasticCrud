@@ -11,6 +11,3 @@ es = Elasticsearch([url],
                    http_auth=(username, password),
                    verify_certs=False
                    )
-
-
-
