@@ -1,4 +1,4 @@
-from utilities.crud import create
+from utilities.crud import *
 from utilities.elastic_config import *
 from utilities.query_builder import buildElsQuery
 
@@ -85,12 +85,25 @@ emp = [
 #     print(res)
 
 
-employees_data = {
-    'name': 'Saurav',
-    'age': 28,
-    'programming_languages': ['Node.js', 'React']
-}
+# employees_data = {
+#     'name': 'Saurav',
+#     'age': 28,
+#     'programming_languages': ['Node.js', 'React']
+# }
 
 
-res = create('employee','employee_data',employees_data)
-print(res)
+# res = create('employee','employee_data',employees_data)
+# print(res)
+
+doc = [{"item_name": "apple", "price": 100}, {"item_name": "mango", "price": 150}, {"item_name": "cherry", "price": 200}, {"item_name": "litchi", "price": 250}, {"item_name": "chips", "price": 300}, {
+    "item_name": "cream", "price": 350}, {"item_name": "plum", "price": 400}, {"item_name": "cake", "price": 450}, {"item_name": "biscuit", "price": 500}, {"item_name": "chocolate", "price": 550}]
+for docs in doc:
+    res =create('food',docs)
+    print(res)
+
+
+# resp = get_all('food')
+# print(resp['hits'])
+# print( resp['hits']['total']['value'])
+# for hit in resp['hits']['hits']:
+#     print(hit["_source"])
