@@ -13,6 +13,7 @@ async def update_by_id(index_name, id, doc):
     index_exists = client.indices.exists(index=index_name)
     if index_exists:
         try:
+            doc.update({'updated_at':convert_date()})
             return client.update(index=index_name, id=id, body={"doc": doc})
         except ModuleNotFoundError:
             return {'status': False, 'msg': f'id = {id} does not exists'}
@@ -62,6 +63,7 @@ async def create(index_name, mapping):
     index_exists = client.indices.exists(index=index_name)
     if not index_exists:
         client.indices.create(index=index_name)
+    mapping.update({'created_at':convert_date(),'updated_at':convert_date()})
     response = client.index(index=index_name, body=mapping)
     response_get_by_id = await get_by_id(index_name=index_name, id=response['_id'])
     try:
