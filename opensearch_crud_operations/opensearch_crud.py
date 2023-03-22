@@ -2,9 +2,9 @@ from opensearch_crud_operations.open_search import client
 from datetime import datetime,timezone
 
 def convert_date():
-    date_convert =  datetime.now(timezone.utc).isoformat().replace("+00:00",'')
+    date_convert =  datetime.now(timezone.utc).astimezone()
     converted_date = str(date_convert).split('.')[0]
-    return converted_date
+    return str(converted_date)
 
 async def delete_index(index_name):
     index_exists = client.indices.exists(index=index_name)
